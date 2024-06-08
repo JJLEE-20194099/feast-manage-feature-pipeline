@@ -17,7 +17,7 @@ class PostgresqlDB():
     def __init__(self, db_config: str = None, connection_str:str = os.getenv('POSTGRES_SERVER_PATH'), database:str = os.getenv('POSTGRES_DATABASE')):
 
         self.__database = database
-        self.__connection_str = f'postgresql://{os.getenv('POSTGRES_USERNAME')}:{os.getenv('POSTGRES_PASSWORD')}@{os.getenv('POSTGRES_SERVER_PATH')}/{self.__database}'
+        self.__connection_str = f"postgresql://{os.getenv('POSTGRES_USERNAME')}:{os.getenv('POSTGRES_PASSWORD')}@{os.getenv('POSTGRES_SERVER_PATH')}/{self.__database}"
         self.__client = create_engine(self.__connection_str)
 
 
