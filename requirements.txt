@@ -1,1 +1,3 @@
+protobuf==4.25.3
 feast==0.37.1
+great_expectations
