@@ -11,3 +11,6 @@ class SaveDatasetInfo(BaseModel):
 
 class FeatureRepoInfo(BaseModel):
     path: str
+
+class FeatureViewInfo(BaseModel):
+    name: str
