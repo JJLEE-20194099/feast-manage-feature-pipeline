@@ -136,3 +136,29 @@ def save_dataset(dataset_info: SaveDatasetInfo):
         name=dataset_info['dataset_name'],
         storage=SavedDatasetFileStorage(storage_path),
     )
+
+@app.post("/materialize")
+def materialize(start_date: str, end_date: str):
+    end_date = datetime.strptime(
+        end_date,
+        "%Y-%m-%d"
+        )
+
+    start_date = datetime.strptime(
+        start_date,
+        "%Y-%m-%d"
+        )
+
+    app.store.materialize(
+        end_date=end_date,
+        start_date=start_date
+        )
+
+@app.post("/materialize_incremental")
+def materialize_incremental(end_date: str):
+    end_date = datetime.strptime(
+        end_date,
+        "%Y-%m-%d"
+        )
+
+    app.store.materialize_incremental(end_date=end_date)
