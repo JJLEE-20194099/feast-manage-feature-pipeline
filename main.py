@@ -45,3 +45,13 @@ def get_store(body: FeatureRepoInfo):
     os.chdir("../")
 
     return "Feast teardown & feast apply to register feature done"
+
+@app.get("/get_feature_views")
+def get_feature_views():
+    feature_views = app.store.list_feature_views()
+    feature_view_names = []
+
+    for feature_view in feature_views:
+        feature_view_names.append(feature_view.name)
+
+    return {"feature_view_names": feature_view_names}
