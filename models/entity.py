@@ -8,6 +8,7 @@ class EntityDF(BaseModel):
 class SaveDatasetInfo(BaseModel):
     dataset_name: str
     feature_view_names: list[str]
+    dest_folder_path: str
 
 class FeatureRepoInfo(BaseModel):
     path: str
