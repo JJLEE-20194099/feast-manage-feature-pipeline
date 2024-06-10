@@ -19,5 +19,5 @@ training_data = store.get_historical_features(
 dataset = store.create_saved_dataset(
     from_=training_data,
     name="realestate_dataset_1",
-    storage=SavedDatasetFileStorage("data/realestate_dataset_1.parquet")
+    storage=SavedDatasetFileStorage("/home/long/long/datn-feast/data/realestate_dataset_1.parquet")
 )
