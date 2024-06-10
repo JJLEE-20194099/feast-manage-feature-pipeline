@@ -1,5 +1,3 @@
-from app.modules.classify.fileProcess import FileStore, FileReader
-from app.modules.classify import settings
 import os
 from gensim import matutils
 from pyvi import ViTokenizer
@@ -8,7 +6,7 @@ import re
 import numpy as np
 import regex as re
 import math
-from app.utils.constant import Char
+from constant import Char
 
 uniChars = Char.UNICHARS
 unsignChars = Char.UNSIGNCHARS
@@ -17,8 +15,6 @@ PUNCT_TO_REMOVE = string.punctuation
 vowel_table = Char.VOWEL_TABLE
 first_char_table = Char.FIRST_CHAR_TABLE
 vowel_to_ids = {}
-
-stopwords = FileReader(settings.STOP_WORDS).read_stopwords()
 
 
 def loaddicchar():
@@ -213,75 +209,3 @@ def remove_special_character(text):
     return " ".join(words)
 
 
-def segmentation(text):
-    return ViTokenizer.tokenize(text)
-
-
-def split_words(text):
-    text = segmentation(text)
-    try:
-        return [x.strip(settings.SPECIAL_CHARACTER).lower() for x in text.split()]
-    except TypeError:
-        return []
-
-def get_words_feature(text):
-    _split_words = split_words(text)
-    return [word for word in _split_words if word.encode('utf-8') not in stopwords and word != '']
-
-class FeatureExtraction(object):
-    def __init__(self, data):
-        self.data = data
-
-    def __build_dictionary(self):
-        print('Building dictionary')
-        dict_words = []
-        i = 0
-        for text in self.data:
-            i += 1
-            print("Dictionary Step {} / {}".format(i, len(self.data)))
-            words = get_words_feature(text['content'])
-            dict_words.append(words)
-        FileStore(filePath=settings.DICTIONARY_PATH).store_dictionary(
-            dict_words)
-
-    def __load_dictionary(self):
-        if os.path.exists(settings.DICTIONARY_PATH) == False:
-            self.__build_dictionary()
-        self.dictionary = FileReader(
-            settings.DICTIONARY_PATH).load_dictionary()
-
-    def __build_dataset(self):
-        print('Building dataset')
-        self.features = [self.get_dense(d['content']) for d in data]
-        self.labels = [self.get_dense(d['content']) for d in d['category']]
-
-    def get_dense(self, text):
-        words = get_words_feature(text)
-        # Bag of words
-        self.__load_dictionary()
-        vec = self.dictionary.doc2bow(words)
-        dense = list(matutils.corpus2dense(
-            [vec], num_terms=len(self.dictionary)).T[0])
-        return dense
-
-    # def build_tfidf(self,text):
-
-    def get_data_and_label_tfidf(self):
-        print('Building dataset')
-        self.features = [' '.join(get_words_feature(d['content'])) for d in self.data]
-        self.labels = [d['category'] for d in self.data]
-        return self.features, self.labels
-
-    def get_data_and_label_bow(self):
-        self.__build_dataset()
-        return self.features, self.labels
-
-    def read_feature(self):
-        return self.data['features'], self.data['labels']
-
-
-def get_feature_dict(value_features, value_labels):
-    return {
-        "features": value_features,
-        "labels": value_labels
-    }
