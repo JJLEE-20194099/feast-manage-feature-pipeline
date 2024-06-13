@@ -8,61 +8,113 @@ def get_compact_info(item):
     try:
         try:
             numberOfFloors = item['houseInfo']['value']['numberOfFloors']
-        except:numberOfFloors = None
+        except:
+            numberOfFloors = None
+
+
+        try:
+            numberOfBedRooms = item['houseInfo']['value']['numberOfBedRooms']
+        except:
+            numberOfBedRooms = None
+
+        try:
+            numberOfBathRooms = item['houseInfo']['value']['numberOfBathRooms']
+        except:
+            numberOfBathRooms = None
+
+        try:
+            numberOfKitchens = item['houseInfo']['value']['numberOfKitchens']
+        except:
+            numberOfKitchens = None
+
+        try:
+            numberOfLivingRooms = item['houseInfo']['value']['numberOfLivingRooms']
+        except:
+            numberOfLivingRooms = None
+
+        try:
+            numberOfGarages = item['houseInfo']['value']['numberOfGarages']
+        except:
+            numberOfGarages = None
+
+        try:
+            certificateOfLandUseRight = item['mediaInfo']['certificateOfLandUseRight']['certificateStatus']
+        except:
+            certificateOfLandUseRight = None
+
         try:
             ward = item['propertyBasicInfo']['address']['value']['ward']
-        except:ward = None
+        except:
+            ward = None
+
         try:
             street = item['propertyBasicInfo']['address']['value']['street']
-        except:street = None
+        except:
+            street = None
         try:
             district = item['propertyBasicInfo']['address']['value']['district']
-        except:district = None
+        except:
+            district = None
         try:
             city = item['propertyBasicInfo']['address']['value']['city']
-        except:city = None
+        except:
+            city = None
         try:
             lat = item['propertyBasicInfo']['geolocation']['value']['latitude']['value']
-        except:lat = None
+        except:
+            lat = None
         try:
             lon = item['propertyBasicInfo']['geolocation']['value']['longitude']['value']
-        except:lon = None
+        except:
+            lon = None
         try:
             typeOfRealEstate = item['propertyBasicInfo']['typeOfRealEstate']['value']
-        except:typeOfRealEstate = None
+        except:
+            typeOfRealEstate = None
         try:
             frontWidth = item['propertyBasicInfo']['frontWidth']['value']
-        except:frontWidth = None
+        except:
+            frontWidth = None
         try:
             endWidth = item['propertyBasicInfo']['endWidth']['value']
-        except:endWidth = None
+        except:
+            endWidth = None
         try:
             facade = item['propertyBasicInfo']['facade']['value']
-        except:facade = None
+        except:
+            facade = None
         try:
             houseDirection = item['propertyBasicInfo']['houseDirection']['value']
-        except:houseDirection = None
+        except:
+            houseDirection = None
         try:
             landSize = item['propertyBasicInfo']['landSize']['value']
-        except:landSize = None
+        except:
+            landSize = None
         try:
             price = item['propertyBasicInfo']['price']['value']
-        except:price = None
+        except:
+            price = None
         try:
             unitPrice = item['propertyBasicInfo']['unitPrice']['value']
-        except:unitPrice = None
+        except:
+            unitPrice = None
         try:
             distanceToNearestRoad = item['propertyBasicInfo']['distanceToNearestRoad']['value']
-        except:distanceToNearestRoad = None
+        except:
+            distanceToNearestRoad = None
         try:
             frontRoadWidth = item['propertyBasicInfo']['frontRoadWidth']['value']
-        except:frontRoadWidth = None
+        except:
+            frontRoadWidth = None
         try:
             accessibility = item['propertyBasicInfo']['accessibility']['value']
-        except:accessibility = None
+        except:
+            accessibility = None
         try:
             landType = item['propertyBasicInfo']['landType']['value']
-        except:landType = None
+        except:
+            landType = None
 
         try:
             description = item['propertyBasicInfo']['description']['value']
@@ -71,6 +123,11 @@ def get_compact_info(item):
 
         return {
             "numberOfFloors": numberOfFloors,
+            "numberOfBathRooms": numberOfBathRooms,
+            "numberOfBedRooms": numberOfBedRooms,
+            "numberOfKitchens": numberOfKitchens,
+            "numberOfGarages": numberOfGarages,
+            "certificateOfLandUseRight": certificateOfLandUseRight,
             "ward": ward,
             "street": street,
             "district": district,

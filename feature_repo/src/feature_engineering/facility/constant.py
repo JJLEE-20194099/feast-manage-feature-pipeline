@@ -4,9 +4,19 @@ class Distance:
     DISTANCE_THRESHOLD = 10000
 
 
+
+class OpenstreetMap:
+    MAIN_DOMAIN = 'http://65.109.112.52'
+    API_PATH = '/api/interpreter'
+
+
+class MeanOfFacility:
+    TOWNHALL = 'townhall'
+    COMMUNITY_CENTER = 'community_centre'
+
 class FilePath:
 
-    MAIN_FILE_PATH = 'app/files'
+    MAIN_FILE_PATH = './data'
 
     MAIN_LABEL_ENCODER_PATH = f'{MAIN_FILE_PATH}/labelencoder'
     DISTRICT_LABEL_ENCODER = f'{MAIN_LABEL_ENCODER_PATH}/district_label_encoder.pkl'

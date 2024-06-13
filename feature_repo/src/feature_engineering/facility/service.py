@@ -15,9 +15,11 @@ from dto.location import (
 
 from constant import OpenstreetMap, FilePath, MeanOfFacility
 
+from tqdm import tqdm
+
 Num = Union[int, float]
 
-async def findpublicfacilities(location_config: LocationConfig):
+def findpublicfacilities(location_config: LocationConfig):
 
     lat, lon, distance = astuple(location_config)
     overpass_url = f"{OpenstreetMap.MAIN_DOMAIN}{OpenstreetMap.API_PATH}"
@@ -40,34 +42,19 @@ async def findpublicfacilities(location_config: LocationConfig):
     return data['elements']
 
 
-def count_facilities_v2(facility_list):
-
-    facility_dict = {}
-
-    means_of_facility_obj = json.load(open(FilePath.MEAN_OF_FACILITY_DESC, encoding='utf-8'))
-    means_of_facility = means_of_facility_obj["means_of_facility_list"]
-
-    for _fa in means_of_facility:
-        facility_dict[_fa] = 0
-
-    for facility in facility_list:
-        if facility['type'] == MeanOfFacility.TOWNHALL or facility['type'] == MeanOfFacility.COMMUNITY_CENTER:
-            facility_dict[f'{MeanOfFacility.TOWNHALL - MeanOfFacility.COMMUNITY_CENTER}'] = facility_dict[f'{MeanOfFacility.TOWNHALL - MeanOfFacility.COMMUNITY_CENTER}'] + 1
-
-        if facility['type'] in means_of_facility:
-            facility_dict[facility['type']] = facility_dict[facility['type']] + 1
-
-    return facility_dict
-
-async def count_facilities(lat: float, lon: float, distance: int, response = None):
+def count_facilities(lat: float, lon: float, distance: int, response = None):
     if response is not None:
         res = response
     else:
-        res = await findpublicfacilities(LocationConfig(
-            lat = lat,
-            lon = lon,
-            distance = distance
-        ))
+        try:
+            res = findpublicfacilities(LocationConfig(
+                lat = lat,
+                lon = lon,
+                distance = distance
+            ))
+        except Exception as e:
+            print(e)
+            return {}
     facility_dict = {}
     means_of_facility_obj = json.load(open(FilePath.MEAN_OF_FACILITY_DESC, encoding='utf-8'))
     means_of_facility = means_of_facility_obj["means_of_facility_list"]
@@ -86,6 +73,7 @@ async def count_facilities(lat: float, lon: float, distance: int, response = Non
             pass
 
     return facility_dict
+
 
 async def get_num_facilities_based_location_list_util(locationListConfig: LocationListConfig):
 
@@ -164,5 +152,3 @@ def cal_distance_to_type_of_place(location_df:pd.DataFrame, place_information_co
             x['lat'], x['lon'], commercial_lat, commercial_lon), axis=1)
 
     return location_df
-
-
