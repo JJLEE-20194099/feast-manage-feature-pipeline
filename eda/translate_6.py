@@ -32,7 +32,7 @@ def translate_gg_free(text, tgt_lang = "en", src_lang = "vi"):
 
 descs = df['description'].tolist()
 eng_descs = []
-for i, desc in tqdm(enumerate(descs[20000:40000])):
+for i, desc in tqdm(enumerate(descs[100000:120000])):
     try:
         en_desc = translate_gg_free(desc)
         eng_descs.append(en_desc)
@@ -44,4 +44,4 @@ for i, desc in tqdm(enumerate(descs[20000:40000])):
         eng_df = pd.DataFrame()
         eng_df['en_description'] = eng_descs
         eng_df['description'] = descs[:i + 1]
-        eng_df.to_csv(f'../data/process_v1/trans/eng_2_{i + 1}.csv', index = False)
+        eng_df.to_csv(f'../data/process_v1/trans/eng_6_{i + 1}.csv', index = False)

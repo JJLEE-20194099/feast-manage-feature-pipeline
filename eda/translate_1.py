@@ -44,4 +44,4 @@ for i, desc in tqdm(enumerate(descs[:20000])):
         eng_df = pd.DataFrame()
         eng_df['en_description'] = eng_descs
         eng_df['description'] = descs[:i + 1]
-        eng_df.to_csv(f'../data/trans/process_v1/eng_1_{i + 1}.csv', index = False)
+        eng_df.to_csv(f'../data/process_v1/trans/eng_1_{i + 1}.csv', index = False)
