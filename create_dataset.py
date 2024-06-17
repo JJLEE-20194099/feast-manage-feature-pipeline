@@ -7,8 +7,8 @@ from feature_repo.src.feature_engineering.helper.fv_schema import get_feast_feat
 
 store = FeatureStore(repo_path="feature_repo/")
 
-HCM_CONFIG = json.load(open('feature_repo/src/config/featureset/full_version.json'))
-feature_dict = json.load(open(HCM_CONFIG['featureset_path'], 'r'))
+HCM_CONFIG = json.load(open('feature_repo/src/config/featureset/full_version.json', encoding='utf-8'))
+feature_dict = json.load(open(HCM_CONFIG['featureset_path'], 'r', encoding='utf-8'))
 features = feature_dict['cat_cols'] + feature_dict['num_cols']
 
 entity_df = pd.read_parquet(path=HCM_CONFIG['featureset_target_path'])

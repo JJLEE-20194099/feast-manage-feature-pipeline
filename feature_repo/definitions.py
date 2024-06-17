@@ -12,7 +12,7 @@ realestate = Entity(
     description="The ID of the realestate")
 
 
-HCM_CONFIG = json.load(open('src/config/featureset/full_version.json'))
+HCM_CONFIG = json.load(open('src/config/featureset/full_version.json', encoding='utf-8'))
 hcm_featureset_path = HCM_CONFIG['featureset_path']
 
 df_source_hcm = FileSource(
