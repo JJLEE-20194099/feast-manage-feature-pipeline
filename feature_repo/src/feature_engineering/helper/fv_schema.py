@@ -24,3 +24,6 @@ def get_fv_schema_by_path(path = '/home/long/long/datn-feast/data/featureset/ful
 
 
     return cat_fv_schema + num_fv_schema
+
+def get_feast_featureset(fv_name, features):
+    return [f'{fv_name}:{feature}' for feature in features]

@@ -4,7 +4,7 @@ import numpy as np
 import pickle
 import json
 
-from constant import Distance
+from src.feature_engineering.facility.constant import Distance
 
 Num = Union[int, float]
 

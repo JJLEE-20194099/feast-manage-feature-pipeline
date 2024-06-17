@@ -1,23 +1,26 @@
 import pandas as pd
 from feast import FeatureStore
 from feast.infra.offline_stores.file_source import SavedDatasetFileStorage
+import json
+
+from feature_repo.src.feature_engineering.helper.fv_schema import get_feast_featureset
 
 store = FeatureStore(repo_path="feature_repo/")
 
-entity_df = pd.read_parquet(path="data/target_df.parquet")
+
+HCM_CONFIG = json.load(open('feature_repo/src/config/featureset/full_version.json'))
+feature_dict = json.load(open(HCM_CONFIG['featureset_path'], 'r'))
+features = feature_dict['cat_cols'] + feature_dict['num_cols']
+
+entity_df = pd.read_parquet(path=HCM_CONFIG['featureset_target_path'])
 
 training_data = store.get_historical_features(
     entity_df=entity_df,
-    features=[
-        "df4_feature_view:num_of_bathroom",
-        "df4_feature_view:district",
-        "df4_feature_view:num_of_bedroom",
-        "df4_feature_view:used_area"
-    ]
+    features=get_feast_featureset(fv_name=HCM_CONFIG['df_feature_view_name'], features = features)
 )
 
 dataset = store.create_saved_dataset(
     from_=training_data,
     name="realestate_dataset_1",
-    storage=SavedDatasetFileStorage("/home/long/long/datn-feast/data/realestate_dataset_1.parquet")
+    storage=SavedDatasetFileStorage("/home/long/long/datn-feast/data/realestate_dataset_full_version.parquet")
 )

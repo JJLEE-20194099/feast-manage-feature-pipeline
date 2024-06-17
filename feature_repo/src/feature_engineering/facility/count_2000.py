@@ -1,33 +1,33 @@
-import pandas as pd
-import json
-from tqdm import tqdm
+# import pandas as pd
+# import json
+# from tqdm import tqdm
 
-from constant import FilePath
-from service import count_facilities
+# from constant import FilePath
+# from service import count_facilities
 
-means_of_facility_obj = json.load(open(FilePath.MEAN_OF_FACILITY_DESC, encoding='utf-8'))
-means_of_facility = means_of_facility_obj["means_of_facility_list"]
+# means_of_facility_obj = json.load(open(FilePath.MEAN_OF_FACILITY_DESC, encoding='utf-8'))
+# means_of_facility = means_of_facility_obj["means_of_facility_list"]
 
-num_of_facility_dict = {}
-for facility in means_of_facility:
-    num_of_facility_dict[facility] = []
+# num_of_facility_dict = {}
+# for facility in means_of_facility:
+#     num_of_facility_dict[facility] = []
 
-latlon_df = pd.read_csv('./data/table/hcm_hn_latlon.csv')
+# latlon_df = pd.read_csv('./data/table/hcm_hn_latlon.csv')
 
-distance = 2000
+# distance = 2000
 
-lat_list = latlon_df['lat'].tolist()
-lon_list = latlon_df['lon'].tolist()
+# lat_list = latlon_df['lat'].tolist()
+# lon_list = latlon_df['lon'].tolist()
 
-for (lat, lon) in tqdm(zip(lat_list, lon_list)):
-    num_of_facility = count_facilities(lat, lon, distance=distance)
+# for (lat, lon) in tqdm(zip(lat_list, lon_list)):
+#     num_of_facility = count_facilities(lat, lon, distance=distance)
 
-    for facility in means_of_facility:
-        num_of_facility_dict[facility].append(num_of_facility[facility])
-df= pd.DataFrame(columns = ['lat', 'lon'] + means_of_facility)
-df['lat'] = lat_list
-df['lon'] = lon_list
-for facility in means_of_facility:
-    df[facility] = num_of_facility_dict[facility]
+#     for facility in means_of_facility:
+#         num_of_facility_dict[facility].append(num_of_facility[facility])
+# df= pd.DataFrame(columns = ['lat', 'lon'] + means_of_facility)
+# df['lat'] = lat_list
+# df['lon'] = lon_list
+# for facility in means_of_facility:
+#     df[facility] = num_of_facility_dict[facility]
 
-df.to_csv(f'./data/table/hcm_hn_distance_{distance}_facility_count.csv', index=False)
+# df.to_csv(f'./data/table/hcm_hn_distance_{distance}_facility_count.csv', index=False)

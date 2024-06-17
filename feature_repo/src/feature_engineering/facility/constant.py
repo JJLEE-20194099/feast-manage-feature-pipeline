@@ -16,7 +16,7 @@ class MeanOfFacility:
 
 class FilePath:
 
-    MAIN_FILE_PATH = './data'
+    MAIN_FILE_PATH = 'src/feature_engineering/facility/data'
 
     MAIN_LABEL_ENCODER_PATH = f'{MAIN_FILE_PATH}/labelencoder'
     DISTRICT_LABEL_ENCODER = f'{MAIN_LABEL_ENCODER_PATH}/district_label_encoder.pkl'
