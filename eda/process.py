@@ -120,6 +120,10 @@ def get_compact_info(item):
             description = item['propertyBasicInfo']['description']['value']
         except:description = ""
 
+        try:
+            time = item['crawlInfo']['time']
+        except:time = ""
+
 
         return {
             "numberOfFloors": numberOfFloors,
@@ -147,6 +151,7 @@ def get_compact_info(item):
             "accessibility": accessibility,
             "landType": landType,
             "description": description,
+            "time": time
         }
     except Exception as e:
         print(e)
@@ -162,4 +167,3 @@ with open("../data/process_v1/process_data.json", "w",encoding='utf-8' ) as outf
 json_object = json.dumps(errors, indent=4,ensure_ascii=False )
 with open("../data/process_v1/process_data_error.json", "w",encoding='utf-8' ) as outfile:
     outfile.write(json_object)
-
