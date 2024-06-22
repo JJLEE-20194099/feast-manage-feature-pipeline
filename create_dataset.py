@@ -9,7 +9,7 @@ from tqdm import tqdm
 store = FeatureStore(repo_path="feature_repo/")
 
 for city in ['hn', 'hcm']:
-    for version in tqdm(range(5)):
+    for version in tqdm(range(6)):
         path = f"feature_repo/src/config/featureset/{city}_v{version}.json"
 
         CONFIG = json.load(open(path, encoding='utf-8'))

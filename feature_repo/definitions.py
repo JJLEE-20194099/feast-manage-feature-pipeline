@@ -16,7 +16,7 @@ fv_list = []
 
 
 for city in ['hn', 'hcm']:
-    for version in tqdm(range(5)):
+    for version in tqdm(range(6)):
         path = f"./src/config/featureset/{city}_v{version}.json"
 
         CONFIG = json.load(open(path, encoding='utf-8'))
@@ -68,3 +68,7 @@ fv16 = fv_list[16]
 fv17 = fv_list[17]
 fv18 = fv_list[18]
 fv19 = fv_list[19]
+fv20 = fv_list[20]
+fv21 = fv_list[21]
+fv22 = fv_list[22]
+fv23 = fv_list[23]
