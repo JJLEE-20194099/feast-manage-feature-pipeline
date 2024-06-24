@@ -1,1 +1,9 @@
-{"df_feature_view_name": "df_hcm_feature_view_v3", "target_feature_view_name": "target_hcm_feature_view_v3", "featureset_path": "/mnt/long/long/datn-feast/data/featureset/hcm_v3.json", "featureset_df_path": "/home/long/long/datn-feast/data/data_df_hcm_v3.parquet", "featureset_target_path": "/home/long/long/datn-feast/data/target_df_hcm_v3.parquet", "feast_dataset_name": "realestate_dataset_hcm_v3", "feast_dataset_path": "/home/long/long/datn-feast/data/realestate_dataset_hcm_v3.parquet"}
+{
+    "df_feature_view_name": "df_hcm_feature_view_v3",
+    "target_feature_view_name": "target_hcm_feature_view_v3",
+    "featureset_path": "/mnt/long/long/datn-feast/data/featureset/hcm_v3.json",
+    "featureset_df_path": "/home/long/long/datn-feast/data/data_df_hcm_v3.parquet",
+    "featureset_target_path": "/home/long/long/datn-feast/data/target_df_hcm_v3.parquet",
+    "feast_dataset_name": "realestate_dataset_hcm_v3",
+    "feast_dataset_path": "/home/long/long/datn-feast/data/realestate_dataset_hcm_v3.parquet"
+}

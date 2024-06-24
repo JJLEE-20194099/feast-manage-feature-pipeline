@@ -39,7 +39,7 @@ def get_store(body: FeatureRepoInfo):
 
     os.chdir(app.repo_path)
 
-    os.system("feast teardown")
+    # os.system("feast teardown")
     os.system("feast apply")
 
     os.chdir("../")

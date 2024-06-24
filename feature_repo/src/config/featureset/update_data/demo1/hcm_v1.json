@@ -1,0 +1,9 @@
+{
+    "df_feature_view_name": "demo1_df_hcm_feature_view_v1",
+    "target_feature_view_name": "demo1_target_hcm_feature_view_v1",
+    "featureset_path": "/mnt/long/long/datn-feast/data/featureset/hcm_v1.json",
+    "featureset_df_path": "/mnt/long/long/datn-feast/data/update_data/demo1/data_df_hcm_v1.parquet",
+    "featureset_target_path": "/mnt/long/long/datn-feast/data/update_data/demo1/target_df_hcm_v1.parquet",
+    "feast_dataset_name": "demo1_realestate_dataset_hcm_v1",
+    "feast_dataset_path": "/mnt/long/long/datn-feast/data/update_data/demo1/realestate_dataset_hcm_v1.parquet"
+}
