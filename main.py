@@ -10,6 +10,15 @@ import os
 
 from models.entity import EntityDF, FeatureRepoInfo, FeatureViewInfo, SaveDatasetInfo
 
+import pandas as pd
+from feast import FeatureStore
+from feast.infra.offline_stores.file_source import SavedDatasetFileStorage
+import json
+import os
+from feature_repo.src.feature_engineering.helper.fv_schema import get_feast_featureset
+from tqdm import tqdm
+
+from create_dataset import make_full_city_version
 
 app = FastAPI(
     title='ĐATN - Feast - API Documentation', docs_url='/docs',
@@ -162,3 +171,11 @@ def materialize_incremental(end_date: str):
         )
 
     app.store.materialize_incremental(end_date=end_date)
+
+@app.post("/build-training-dataset")
+def build_training_dataset():
+    store = FeatureStore(repo_path="feature_repo/")
+    make_full_city_version()
+    return {
+        "status": "done"
+    }
