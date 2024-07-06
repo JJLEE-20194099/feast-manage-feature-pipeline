@@ -37,6 +37,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/healthcheck")
+def healthcheck():
+    return 1
+
 @app.post("/get_store")
 def get_store(body: FeatureRepoInfo):
     body = dict(body)
