@@ -15,3 +15,6 @@ class FeatureRepoInfo(BaseModel):
 
 class FeatureViewInfo(BaseModel):
     name: str
+
+class MLOpsExpData(BaseModel):
+    version_tag:str

@@ -8,13 +8,19 @@ from tqdm import tqdm
 
 store = FeatureStore(repo_path="feature_repo/")
 
-def make_full_city_version():
+def make_full_city_version(version_tag = 'demo1', full = True):
     for city in ['hn', 'hcm']:
         for version in tqdm(range(6)):
-            for path in [
-                f"feature_repo/src/config/featureset/update_data/demo1/{city}_v{version}.json",
-                f"feature_repo/src/config/featureset/{city}_v{version}.json",
-            ]:
+
+            if full:
+                path_list = [
+                    f"feature_repo/src/config/featureset/update_data/{version_tag}/{city}_v{version}.json",
+                    f"feature_repo/src/config/featureset/{city}_v{version}.json",
+                ]
+            else:
+                path_list = [f"feature_repo/src/config/featureset/update_data/{version_tag}/{city}_v{version}.json"]
+
+            for path in path_list:
 
                 CONFIG = json.load(open(path, encoding='utf-8'))
 

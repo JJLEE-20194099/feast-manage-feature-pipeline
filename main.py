@@ -8,7 +8,7 @@ from git import Repo
 import pandas as pd
 import os
 
-from models.entity import EntityDF, FeatureRepoInfo, FeatureViewInfo, SaveDatasetInfo
+from models.entity import EntityDF, FeatureRepoInfo, FeatureViewInfo, MLOpsExpData, SaveDatasetInfo
 
 import pandas as pd
 from feast import FeatureStore
@@ -180,6 +180,14 @@ def materialize_incremental(end_date: str):
 def build_training_dataset():
     store = FeatureStore(repo_path="feature_repo/")
     make_full_city_version()
+    return {
+        "status": "done"
+    }
+
+
+@app.post("/build-experiment-dataset")
+def build_experiment_dataset(body: MLOpsExpData):
+    make_full_city_version(version_tag = body.version_tag, full = False)
     return {
         "status": "done"
     }
